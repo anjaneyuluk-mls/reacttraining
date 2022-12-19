@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      input, button {
+        margin: 7px 0px;
+      }
+    </style>
+     </head>
+  <body>
+    <h1>favourite mvovies</h1>
+    <form action="none" id="movie-form">
+      <label for="name">name:</label>
+    <input   name="name" type="text" /><br>
+      <label for="release_date">release_date:</label>
+    <input name='release_date' type="date" /><br>
+      <label for="hit">hit:</label>
+    <input name='hit' type="checkbox" /><br>
+    <button type="button" onclick="addMovie()">Add</button>
+    </form>
+    <table id="movies">
+      <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>relase date</th>
+        <th>hit</th>
+      </tr>
+    </ul>
+    <script src="/clientscript.js">
+    </script>
+  </body>
+</html>

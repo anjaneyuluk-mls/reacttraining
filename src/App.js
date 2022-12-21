@@ -1,10 +1,10 @@
 import React from 'react';
 import 'antd/dist/reset.css';
 import './App.css';
-import ListExample from './ListExample';
+import ListExample from './Screens/ListExample';
 import { Tabs } from 'antd';
 import styled from 'styled-components';
-import AntdTable from './TableExample';
+import AntdTable from './Screens/TableExample';
 
 const Container = styled.div`
   margin: 30px;

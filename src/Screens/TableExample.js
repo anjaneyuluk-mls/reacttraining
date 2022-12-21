@@ -35,7 +35,7 @@ const columns = [
 const AntdTable = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:3600/movies')
+    fetch('http://localhost:3600/movies? pageno')
       .then((res) => res.json())
       .then((moviesData) => {
         setData(moviesData.items);

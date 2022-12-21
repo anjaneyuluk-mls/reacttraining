@@ -1,8 +1,7 @@
 import { Col, Divider, List, Row, Spin } from "antd";
 import "antd/dist/reset.css";
 import { useEffect, useState } from "react";
-import "./App.css";
-import MyList from "./MyList";
+import MyList from "../Components/MyList";
 
 const ListExample = () => {
   const stateInfo = useState([]); // initial value

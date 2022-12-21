@@ -5,6 +5,7 @@ import ListExample from './ListExample';
 import { Tabs } from 'antd';
 import styled from 'styled-components';
 import AntdTable from './TableExample';
+import MoviesForm from './Form';
 
 const Container = styled.div`
   margin: 30px;
@@ -27,7 +28,7 @@ const App = () => (
         {
           label: `form`,
           key: '3',
-          children: `todo form`,
+          children: <MoviesForm/>,
         },
       ]}
     />

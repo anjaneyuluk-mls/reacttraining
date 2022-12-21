@@ -5,7 +5,10 @@ import "./App.css";
 import MyList from "./MyList";
 
 const ListExample = () => {
-  const [data, setData] = useState([]);
+  const stateInfo = useState([]); // initial value
+  console.log(typeof stateInfo);
+  const data = stateInfo[0];
+  const setData = stateInfo[1];
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -29,7 +32,7 @@ const ListExample = () => {
   return (
     <div className="App">
       {loading ? (
-        <Spin spinning={true} />
+        <Spin spinning={true} /> 
       ) : (
         <Row>
           <Col span={11}>

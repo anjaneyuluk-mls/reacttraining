@@ -4,6 +4,7 @@ import './App.css';
 import ListExample from './ListExample';
 import { Tabs } from 'antd';
 import styled from 'styled-components';
+import AntdTable from './TableExample';
 
 const Container = styled.div`
   margin: 30px;
@@ -21,7 +22,7 @@ const App = () => (
         {
           label: `Table`,
           key: '2',
-          children: `todo table`,
+          children: <AntdTable/>,
         },
         {
           label: `form`,

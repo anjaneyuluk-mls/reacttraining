@@ -8,6 +8,21 @@ app.use(cors());
 app.use(express.json());
 const port = 3600;
 app.use(express.static(__dirname + '/public'));
+
+app.post('/signIn', (req, res) => {
+  const data = req.body;
+  const username = data.username;
+  const pass = data.password;
+  if (username === 'admin' && pass === 'admin') {
+    res.json({ message: 'sucess', token: 'authentationtoken' });
+  } else {
+    res.status = 'Authentication failure';
+    res.statusCode = 401;
+    res.statusMessage = 'username and password is wrong';
+    res.json({ message: 'Authentication failure' });
+  }
+});
+
 app.get('/movies', (req, res) => {
   fs.readFile(path.join(__dirname, 'movies.json'), 'utf8', (error, data) => {
     if (error) {

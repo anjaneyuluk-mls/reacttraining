@@ -1,0 +1,62 @@
+import { Button, Form, Input, Spin } from 'antd';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  margin: 24px;
+  height: 500px;
+  width: 400px;
+  padding: 24px;
+  border: 1px solid gray;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+`;
+const FormItem = Form.Item;
+export const Login = () => {
+  const naviagte = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const login = async (values) => {
+    setLoading(true);
+    try {
+      const response = await fetch('http://localhost:3600/signIn', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
+      if (response.status === 200) {
+        naviagte('/table');
+      } else {
+        alert(response.statusText);
+      }
+    } catch (error) {}
+
+    setLoading(false);
+  };
+  return (
+    <Container>
+      {loading ? (
+        <Spin spinning={loading} />
+      ) : (
+        <Form onFinish={login} name="login-form">
+          <FormItem name="username" label="User Name">
+            <Input />
+          </FormItem>
+          <FormItem name="password" label="Password">
+            <Input type="password" />
+          </FormItem>
+          <FormItem>
+            <Button type="primary" htmlType="submit">
+              Login
+            </Button>
+          </FormItem>
+        </Form>
+      )}
+    </Container>
+  );
+};

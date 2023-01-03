@@ -3,25 +3,38 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import AntdTable from './TableExample';
 import MyForm from './MyForm';
 import Something from './ListExample';
 import { Button, Result, Typography } from 'antd';
 import { Login } from './screens/Login';
+import { ProtectedRoute } from './ProtectedRoute';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
+    element: (
+      <ProtectedRoute condition={() => localStorage.getItem('token')}>
+        <App />
+      </ProtectedRoute>
+    ),
     children: [
       {
         path: 'table',
-        element: <AntdTable />,
+        element: (
+          <ProtectedRoute condition={() => localStorage.getItem('token')}>
+            <AntdTable />
+          </ProtectedRoute>
+        ),
       },
       {
         path: 'form',
-        element: <MyForm />,
+        element: (
+          <ProtectedRoute redirect={'list'}>
+            <MyForm />
+          </ProtectedRoute>
+        ),
       },
       {
         path: 'list',

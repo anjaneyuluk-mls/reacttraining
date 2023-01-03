@@ -1,17 +1,14 @@
-import React from 'react';
+import { Col, Image, Layout, Menu, Row, Space, Typography } from 'antd';
 import 'antd/dist/reset.css';
-import './App.css';
-import ListExample from './ListExample';
-import { Layout, Tabs, Image, Typography, Col, Row, Space, Menu } from 'antd';
-import styled from 'styled-components';
-import AntdTable from './TableExample';
-import MoviesForm from './Form';
-import MyForm from './MyForm';
+import React from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import './App.css';
 const { Header, Content, Sider } = Layout;
 const Container = styled.div`
   margin: 30px;
 `;
+
 const App = () => {
   const navigate = useNavigate();
   const onMenuItemSelect = ({ item, key, keyPath, selectedKeys, domEvent }) => {
@@ -30,8 +27,7 @@ const App = () => {
         break;
     }
   };
-  return (
-    <Layout>
+  return (<Layout>
       <Header>
         <Row>
           <Col>
@@ -51,10 +47,14 @@ const App = () => {
             defaultSelectedKeys={['1']}
             defaultOpenKeys={['sub1']}
             style={{ height: '100%', borderRight: 0 }}
-            items={[{key:'Table', label: 'Table' }, { key:'Form',label: 'Form' }, {key:'List', label: 'List' }]}
+            items={[
+              { key: 'Table', label: 'Table' },
+              { key: 'Form', label: 'Form' },
+              { key: 'List', label: 'List' },
+            ]}
           />
         </Sider>
-        <Content style={{margin: 30}}>
+        <Content style={{ margin: 30 }}>
           <Outlet />
         </Content>
       </Layout>

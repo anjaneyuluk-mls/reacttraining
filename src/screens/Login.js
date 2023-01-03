@@ -28,9 +28,13 @@ export const Login = () => {
           'content-type': 'application/json',
         },
         body: JSON.stringify(values),
-      });
-      if (response.status === 200) {
-        naviagte('/table');
+      }).then((res) => res.json());
+      console.log(response);
+      if (response.message === 'sucess') {
+        localStorage.setItem('token', response.token);
+        setTimeout(() => {
+          naviagte('/table');
+        }, 100);
       } else {
         alert(response.statusText);
       }

@@ -10,6 +10,9 @@ import Something from './ListExample';
 import { Button, Result, Typography } from 'antd';
 import { Login } from './screens/Login';
 import { ProtectedRoute } from './ProtectedRoute';
+import { LifeCycleDemo } from './lifecycle/LifeCycleDemo';
+import { RCounter } from './usereducer/ReducerDemo';
+import { TimerDemo } from './TimerDemo/TimerDemo';
 
 const router = createBrowserRouter([
   {
@@ -47,6 +50,12 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
+    path: 'lifecycle',
+    element: <LifeCycleDemo />,
+  },
+  { path: 'reducer', element: <RCounter /> },
+  { path: 'timer', element: <TimerDemo /> },
+  {
     path: '*',
     element: (
       <Result
@@ -60,9 +69,9 @@ const router = createBrowserRouter([
 ]);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>,
+  // <React.StrictMode>
+  <RouterProvider router={router} />,
+  // </React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function

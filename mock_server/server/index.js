@@ -9,18 +9,26 @@ app.use(express.json());
 const port = 3600;
 app.use(express.static(__dirname + '/public'));
 
+function getFileData(fileName, callback) {
+  fs.readFile(path.join(__dirname, fileName), 'utf8', (error, data) => {
+    callback(JSON.parse(data));
+  });
+}
+
 app.post('/signIn', (req, res) => {
   const data = req.body;
   const username = data.username;
   const pass = data.password;
-  if (username === 'admin' && pass === 'admin') {
-    res.json({ message: 'sucess', token: 'authentationtoken' });
-  } else {
-    res.status = 'Authentication failure';
-    res.statusCode = 401;
-    res.statusMessage = 'username and password is wrong';
-    res.json({ message: 'Authentication failure' });
-  }
+  getFileData('users.json', (users) => {
+    if (users[username] && pass === 'admin') {
+      res.json({ message: 'sucess', token: 'authentationtoken', user: users[username] });
+    } else {
+      res.status = 'Authentication failure';
+      res.statusCode = 401;
+      res.statusMessage = 'username and password is wrong';
+      res.json({ message: 'Authentication failure' });
+    }
+  });
 });
 
 app.get('/movies', (req, res) => {

@@ -13,6 +13,7 @@ import { ProtectedRoute } from './ProtectedRoute';
 import { LifeCycleDemo } from './lifecycle/LifeCycleDemo';
 import { RCounter } from './usereducer/ReducerDemo';
 import { TimerDemo } from './TimerDemo/TimerDemo';
+import { UserContext, UserProvider } from './contexts/UserContext';
 
 const router = createBrowserRouter([
   {
@@ -70,7 +71,9 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
-  <RouterProvider router={router} />,
+  <UserProvider>
+    <RouterProvider router={router} />
+  </UserProvider>,
   // </React.StrictMode>,
 );
 

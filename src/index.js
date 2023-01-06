@@ -14,6 +14,7 @@ import { LifeCycleDemo } from './lifecycle/LifeCycleDemo';
 import { RCounter } from './usereducer/ReducerDemo';
 import { TimerDemo } from './TimerDemo/TimerDemo';
 import { UserContext, UserProvider } from './contexts/UserContext';
+import { ProfilePage } from './screens/ProfilePage';
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: 'profile',
+        element: <ProfilePage />,
+      },
+      {
         path: 'list',
         element: <Something />,
       },
@@ -54,6 +59,7 @@ const router = createBrowserRouter([
     path: 'lifecycle',
     element: <LifeCycleDemo />,
   },
+
   { path: 'reducer', element: <RCounter /> },
   { path: 'timer', element: <TimerDemo /> },
   {
@@ -71,6 +77,7 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
+
   <UserProvider>
     <RouterProvider router={router} />
   </UserProvider>,

@@ -1,4 +1,4 @@
-import { Avatar, Dropdown } from 'antd';
+import { Avatar, Dropdown, List, Menu, Popover } from 'antd';
 import Typography from 'antd/es/typography/Typography';
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -7,22 +7,27 @@ import { UserContext } from '../contexts/UserContext';
 export const Profile = () => {
   const [user] = useContext(UserContext);
   const nviagte = useNavigate();
-  const menuProps = {
-    items: [
-      {
-        key: 'logout',
-        label: 'Logout',
+  const items = [
+    {
+      key: 'profile',
+      label: 'Profile',
+      onClick: () => {
+        nviagte('/profile');
       },
-    ],
-    onClick: () => {
-      console.log('we are here');
-      localStorage.removeItem('token');
-      nviagte('/signIn');
     },
-  };
+    {
+      key: 'logout',
+      label: 'Logout',
+      onClick: () => {
+        localStorage.removeItem('token');
+        nviagte('/signIn');
+      },
+    },
+  ];
+  let content = <Menu style={{border:'none'}} items={items}/>
   return (
-    <Dropdown.Button menu={menuProps} placement="bottom">
-      {user.name && user.name[0]}
-    </Dropdown.Button>
+    <Popover placement="bottomRight" content={content}>
+      <Avatar style={{ color: 'white', backgroundColor: 'green' }}>{user.name[0]}</Avatar>
+    </Popover>
   );
 };

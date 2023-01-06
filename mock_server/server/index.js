@@ -31,6 +31,12 @@ app.post('/signIn', (req, res) => {
   });
 });
 
+app.get('/user', (req, res) => {
+  res.json({
+    name: 'Anji',
+  });
+});
+
 app.get('/movies', (req, res) => {
   fs.readFile(path.join(__dirname, 'movies.json'), 'utf8', (error, data) => {
     if (error) {

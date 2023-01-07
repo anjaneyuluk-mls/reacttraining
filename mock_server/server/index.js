@@ -15,6 +15,10 @@ function getFileData(fileName, callback) {
   });
 }
 
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 app.post('/signIn', (req, res) => {
   const data = req.body;
   const username = data.username;
@@ -29,6 +33,13 @@ app.post('/signIn', (req, res) => {
       res.json({ message: 'Authentication failure' });
     }
   });
+});
+
+app.use((req, res, n) => {
+  if (!req.headers.authorization) {
+    return res.status(403).json({ error: 'No credentials sent!' });
+  }
+  n();
 });
 
 app.get('/user', (req, res) => {
@@ -60,9 +71,7 @@ app.post('/movie', (req, res) => {
   });
 });
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+
 
 app.listen(port, () => {
   console.log('I am listeneing at port', port);

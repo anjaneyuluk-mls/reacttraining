@@ -1,17 +1,33 @@
-var arr = [
-  { id: 1, date: 2021 },
-  { id: 2, date: 2021 },
-  { id: 3, date: 2022 },
-  { id: 4, date: 2023 },
-];
+function removeDuplicates(arr) {
+  const uniqueObj = {};
+  arr.forEach((element) => {
+    if (!uniqueObj[element]) {
+      uniqueObj[element] = true;
+    }
+  });
+  return Object.keys(uniqueObj);
+}
+const uniqArray = removeDuplicates([1, 1, 3, 4, 3, 7, 7]);
+console.log({ uniqArray });
 
-const dateMapiing = {};
-arr.forEach((item) => {
-  const date = item.date;
-  if (dateMapiing[date]) {
-    dateMapiing[date].push(item);
-  } else {
-    dateMapiing[date] = [item];
+function factorial(n) {
+  if (n === 1 || n === 0) {
+    return 1;
   }
-});
-console.log(dateMapiing);
+  return n * factorial(n - 1);
+}
+const factorialValue = factorial(6);
+console.log({ factorialValue });
+
+function isPalindrome(str) {
+  let reverseStr = '';
+  for (let index = str.length - 1; index >= 0; index--) {
+    const char = str[index];
+    reverseStr = reverseStr + char;
+  }
+  return reverseStr === str;
+}
+console.log('is Madadm palindrome', isPalindrome('madam'));
+console.log('is Sir palindrome', isPalindrome('sir'));
+
+

@@ -1,0 +1,10 @@
+{
+  "admin": {
+    "name": "Anji Kinnara",
+    "role": "admin"
+  },
+  "user": {
+    "name": "User1",
+    "role": "user"
+  }
+}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Space, Table, Tag } from 'antd';
+import { axiosInstance } from './services/axios';
 const columns = [
   {
     title: 'Name',
@@ -35,11 +36,9 @@ const columns = [
 const AntdTable = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:3600/movies')
-      .then((res) => res.json())
-      .then((moviesData) => {
-        setData(moviesData.items);
-      });
+    axiosInstance('movies').then((res) => {
+      setData(res.data.items);
+    });
   }, []);
   return <Table rowKey={(record) => record.id} columns={columns} dataSource={data} />;
 };

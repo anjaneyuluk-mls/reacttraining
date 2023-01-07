@@ -1,7 +1,8 @@
 import { Button, Form, Input, Spin } from 'antd';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { UserContext } from '../contexts/UserContext';
 
 const Container = styled.div`
   margin: 24px;
@@ -18,6 +19,7 @@ const Container = styled.div`
 const FormItem = Form.Item;
 export const Login = () => {
   const naviagte = useNavigate();
+  const [user, setUser] = useContext(UserContext);
   const [loading, setLoading] = useState(false);
   const login = async (values) => {
     setLoading(true);
@@ -28,9 +30,14 @@ export const Login = () => {
           'content-type': 'application/json',
         },
         body: JSON.stringify(values),
-      });
-      if (response.status === 200) {
-        naviagte('/table');
+      }).then((res) => res.json());
+      console.log(response);
+      if (response.message === 'sucess') {
+        localStorage.setItem('token', response.token);
+        setUser(response.user);
+        setTimeout(() => {
+          naviagte('/table');
+        }, 100);
       } else {
         alert(response.statusText);
       }

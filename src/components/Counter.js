@@ -1,15 +1,19 @@
 import { Button } from 'antd';
-import React, { useState } from 'react';
+import React from 'react';
 
 export const Counter = (props) => {
-  let [counter, setCounter] = useState();
-  function increment() {
-    setCounter(counter + 1);
-  }
   return (
     <div>
-      <h2>{props.startValue}</h2>
-      <Button onClick={increment}>increment</Button>
+      <h2>counter: {props.startValue}</h2>
     </div>
+  );
+};
+
+export const CounterButtons = ({ increment, decrement }) => {
+  return (
+    <>
+      <Button onClick={increment}>+</Button>
+      <Button onClick={decrement}>-</Button>
+    </>
   );
 };

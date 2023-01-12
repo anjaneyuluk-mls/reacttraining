@@ -15,6 +15,7 @@ import { RCounter } from './usereducer/ReducerDemo';
 import { TimerDemo } from './TimerDemo/TimerDemo';
 import { UserContext, UserProvider } from './contexts/UserContext';
 import { ProfilePage } from './screens/ProfilePage';
+import Main from './ReduxDemo/Main';
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,7 @@ const router = createBrowserRouter([
 
   { path: 'reducer', element: <RCounter /> },
   { path: 'timer', element: <TimerDemo /> },
+  { path: 'redux', element: <Main /> },
   {
     path: '*',
     element: (

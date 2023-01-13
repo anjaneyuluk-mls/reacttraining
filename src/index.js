@@ -16,6 +16,8 @@ import { TimerDemo } from './TimerDemo/TimerDemo';
 import { UserContext, UserProvider } from './contexts/UserContext';
 import { ProfilePage } from './screens/ProfilePage';
 import Main from './ReduxDemo/Main';
+import Movies from './screens/Movies';
+import NewMovie from './screens/NewMovie';
 
 const router = createBrowserRouter([
   {
@@ -64,6 +66,8 @@ const router = createBrowserRouter([
   { path: 'reducer', element: <RCounter /> },
   { path: 'timer', element: <TimerDemo /> },
   { path: 'redux', element: <Main /> },
+  { path: 'movies', element: <Movies /> },
+  { path: 'newmovie', element: <NewMovie /> },
   {
     path: '*',
     element: (
@@ -79,10 +83,11 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
-
-  <UserProvider>
-    <RouterProvider router={router} />
-  </UserProvider>,
+  <div style={{ padding: 24 }}>
+    <UserProvider>
+      <RouterProvider router={router} />
+    </UserProvider>
+  </div>,
   // </React.StrictMode>,
 );
 

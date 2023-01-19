@@ -95,12 +95,22 @@ app.get('/movies', (req, res) => {
 app.post('/movie', (req, res) => {
   fs.readFile(path.join(__dirname, 'movies.json'), 'utf8', (error, data) => {
     const movies = JSON.parse(data);
-    const { name, image } = req.body;
+    const { name, image, hit, release_date } = req.body;
     console.log(name, image, req.files);
-    const newItem = { id: movies.items.length + 1, name, image: req.files.image.name };
+    const newItem = {
+      id: movies.items.length + 1,
+      name,
+      hit,
+      release_date,
+      image: req.files?.image?.name,
+    };
     movies.items.push(newItem);
     fs.writeFile(path.join(__dirname, 'movies.json'), JSON.stringify(movies), 'utf8', () => {
-      uploadImage(req, res);
+      if (req.files) {
+        uploadImage(req, res);
+      } else {
+        res.json({ status: 'success' });
+      }
     });
   });
 });
